@@ -1,0 +1,24 @@
+name: Validación del Proyecto
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar repositorio
+      uses: actions/checkout@v3
+
+    - name: Validar HTML
+      uses: Cyb3r-Jak3/html5validator-action@v4
+      with:
+        root: ./
+
+    - name: Validar CSS
+      uses: cssnano/cssnano-action@v1
+
+    - name: Finalizado
+      run: echo "Workflow ejecutado correctamente ✔"
